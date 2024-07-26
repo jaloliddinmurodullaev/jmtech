@@ -1,0 +1,33 @@
+<!-- projects/templates/projects/project_index.html -->
+
+{% extends "base.html" %}
+
+{% block page_content %}
+<br>
+<br>
+<h1>JMTECH - Projects</h1>
+<br>
+<br>
+<div class="row">
+{% for project in projects %}
+    <div>
+        <div class="card mb-3">
+            <div class="card-body">
+                {% if project.link %}
+                    <h5 class="card-title">{{ project.title }} | <a href="{{ project.link }}"> {{ project.title }}</a></h5>
+                    {% comment %} <a href="{{ project.link }}"> {{ project.title }}</a> {% endcomment %}
+                {% else %}
+                    <h5 class="card-title">{{ project.title }}</h5>
+                {% endif %}
+                <p class="card-text">Description: {{ project.description }}</p>
+                <p class="card-text">Technologies: {{ project.technology }}</p>
+                {% comment %} <a href="{% url 'project_detail' project.pk %}"
+                   class="btn btn-primary">
+                    Read More
+                </a> {% endcomment %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
