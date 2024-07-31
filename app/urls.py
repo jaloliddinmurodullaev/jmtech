@@ -7,7 +7,7 @@ from .views import contact_page
 from .views import blog_page
 
 urlpatterns = [
-    path('', about_page),
+    path('', about_page, name='home'),
     path('resume/', resume_page),
     path('projects/', projects_page, name='projects_page'),
     path('contact/', contact_page),
