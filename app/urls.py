@@ -9,7 +9,7 @@ from .views import blog_page
 urlpatterns = [
     path('', about_page),
     path('resume/', resume_page),
-    path('projects/', projects_page),
+    path('projects/', projects_page, name='projects_page'),
     path('contact/', contact_page),
     path('blog/', blog_page)
 ]
