@@ -4,7 +4,7 @@ from .models import Project
 
 
 def about_page(request):
-    print("SHOTTA")
+    # print("SHOTTA")
     return render(request, "about.html", {})
 
 def projects_page(request):
