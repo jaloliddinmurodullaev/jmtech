@@ -32,6 +32,11 @@ class Main(models.Model):
     about = models.TextField() 
     views = models.BigIntegerField(default=0, null=True)
 
+class Contact(models.Model):
+    name = models.CharField(max_length=300)
+    email = models.CharField(max_length=300)
+    message = models.TextField()
+
 # class Experience(models.Model):
 #     company = models.CharField(max_length=100)
 #     position = models.CharField(max_length=200)

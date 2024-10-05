@@ -10,6 +10,6 @@ urlpatterns = [
     path('', about_page, name='home'),
     path('resume/', resume_page),
     path('projects/', projects_page, name='projects_page'),
-    path('contact/', contact_page),
+    path('contact/', contact_page, name='contact_page'),
     path('blog/', blog_page)
 ]
