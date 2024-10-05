@@ -1,10 +1,15 @@
 from django.shortcuts import render
-from django.shortcuts import redirect
+from django.template.loader import render_to_string
 from django.contrib import messages
+from django.http import HttpResponse
+
+
+from weasyprint import HTML
 
 from .models import Project
 from .models import Main
 from .models import Contact
+from .models import Blog
 
 from .forms import ContactForm
 
@@ -31,6 +36,15 @@ def projects_page(request):
 def resume_page(request):
     return render(request, "resume.html", {})
 
+def download_resume(request):
+    html_string = render_to_string('resume_pdf.html')
+    html = HTML(string=html_string)
+    pdf = html.write_pdf()
+
+    response = HttpResponse(pdf, content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="Your_Resume.pdf"'  # Set your desired filename
+    return response
+
 def contact_page(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
@@ -50,5 +64,18 @@ def contact_page(request):
     
     return render(request, "contact.html", {'form': form})
 
-def blog_page(request):
-    return render(request, "blog.html", {})
+def blog_page(request, id=None):
+    if id is None:
+        print("ALPHA")
+        blogs = Blog.objects.all()
+        # print(blogs)
+        return render(request, "blog.html", {'blogs': blogs})
+    else:
+        try:
+            print("BETTA")
+            blog = Blog.objects.get(id=id)
+            print(blog.__dict__)
+            # return render(request, "blog_detail.html", {'blog': blog})
+        except Exception as exc:
+            print(str(exc))
+            return render(request, '404.html')

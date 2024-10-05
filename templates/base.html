@@ -22,11 +22,14 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
               <ul class="navbar-nav ms-auto">
-                <li class="nav-item active">
+                <li class="nav-item"></li>
+                  <a class="nav-link" href="{% url 'resume_page' %}">About</a>
+                </li>
+                <li class="nav-item">
                   <a class="nav-link" href="{% url 'projects_page' %}">Projects<span class="sr-only"></span></a> 
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="">Blog</a>
+                  <a class="nav-link" href="{% url 'blog_page' %}">Blog</a>
                 </li>
                 <!-- <li class="nav-item">
                   <a class="nav-link" href="">Resume</a>
