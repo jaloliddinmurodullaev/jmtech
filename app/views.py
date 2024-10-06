@@ -67,7 +67,7 @@ def contact_page(request):
 def blog_page(request, id=None):
     if id is None:
         print("ALPHA")
-        blogs = Blog.objects.all()
+        blogs = Blog.objects.filter(is_active=True).order_by('-created_at')
         # print(blogs)
         return render(request, "blog.html", {'blogs': blogs})
     else:
@@ -75,7 +75,7 @@ def blog_page(request, id=None):
             print("BETTA")
             blog = Blog.objects.get(id=id)
             print(blog.__dict__)
-            # return render(request, "blog_detail.html", {'blog': blog})
+            return render(request, "blog_detail.html", {'blog': blog})
         except Exception as exc:
             print(str(exc))
             return render(request, '404.html')

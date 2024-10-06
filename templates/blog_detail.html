@@ -1,0 +1,39 @@
+<!-- blog_detail.html -->
+{% extends 'base.html' %}
+
+{% block title %} {{ blog.title }} {% endblock %}
+
+{% block page_content %}
+    <!-- Go Back Button -->
+    <div class="mb-4">
+        <a href="javascript:history.back()" class="btn btn-secondary">&larr; Go Back</a>
+    </div>
+
+    <!-- Blog Title -->
+    <h1 class="mb-3">{{ blog.title }}</h1>
+
+    <!-- Blog Metadata -->
+    <p class="text-muted">Published on: {{ blog.created_at|date:"F j, Y" }}</p>
+
+    <!-- Blog Description -->
+    <div class="mb-4">
+        <h4>Description</h4>
+        <p>{{ blog.desctiption }}</p>
+    </div>
+
+    <!-- Blog Content -->
+    <div class="mb-4">
+        <h4>Content</h4>
+        <p>{{ blog.content }}</p>
+    </div>
+
+    <!-- Blog Likes and Views (Stats) -->
+    <div class="row">
+        <div class="col-md-6">
+            <p><strong>Likes:</strong> {{ blog.likes }}</p>
+        </div>
+        <div class="col-md-6">
+            <p><strong>Views:</strong> {{ blog.views }}</p>
+        </div>
+    </div>
+{% endblock %}
