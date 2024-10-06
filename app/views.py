@@ -42,7 +42,7 @@ def download_resume(request):
     pdf = html.write_pdf()
 
     response = HttpResponse(pdf, content_type='application/pdf')
-    response['Content-Disposition'] = 'attachment; filename="Your_Resume.pdf"'  # Set your desired filename
+    response['Content-Disposition'] = 'attachment; filename="jaloliddinmurodullaev.pdf"'  # Set your desired filename
     return response
 
 def contact_page(request):
