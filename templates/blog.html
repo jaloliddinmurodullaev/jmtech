@@ -15,7 +15,7 @@
                             <a href="{% url 'blog_detail_page' blog.id %}" class="list-group-item list-group-item-action">
                                 <h4 class="mb-1">{{ blog.title }}</h4>
                                 <small class="text-muted">{{ blog.created_at|date:"F j, Y" }}</small>
-                                <p class="mb-1">{{ blog.desctiption|truncatewords:20 }}</p>
+                                <p class="mb-1 mt-2">{{ blog.description }}</p>
                             </a>
                         </div>
                         <hr class="mb-2 mt-1">

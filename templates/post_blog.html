@@ -1,0 +1,39 @@
+<!-- markdown_post.html -->
+{% extends 'base.html' %}
+
+{% block page_content %}
+<div class="container mt-5">
+    <h1 class="text-center">Create a Markdown Post</h1>
+    <form method="POST" action="{% url 'post_blog' %}">  <!-- Update with your actual view name -->
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-12">
+                <textarea id="markdown-editor" name="markdown_content" placeholder="Write your markdown content here..." required></textarea>
+            </div>
+        </div>
+        <div class="text-center mt-4">
+            <button type="submit" class="btn btn-primary">Publish Post</button>
+        </div>
+    </form>
+</div>
+
+<!-- Include CSS and JS files -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simplemde/1.11.18/simplemde.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/simplemde/1.11.18/simplemde.min.js"></script>
+<script>
+    // Initialize SimpleMDE
+    $(document).ready(function() {
+        var simplemde = new SimpleMDE({ 
+            element: document.getElementById("markdown-editor"),
+            autoDownloadFontAwesome: true,
+            toolbar: [
+                "bold", "italic", "heading", "|",
+                "quote", "unordered-list", "ordered-list", "|",
+                "link", "image", "|",
+                "clean", "preview", "side-by-side", "fullscreen"
+            ]
+        });
+    });
+</script>
+{% endblock %}

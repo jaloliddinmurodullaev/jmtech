@@ -6,9 +6,11 @@ from .views import projects_page
 from .views import contact_page
 from .views import blog_page
 from .views import download_resume
+from .views import post_blog
 
 urlpatterns = [
     path('', about_page, name='home'),
+    path('post/', post_blog, name='post_blog'),
     path('resume/', resume_page, name='resume_page'),
     path('projects/', projects_page, name='projects_page'),
     # path('projects/<int:id>', projects_page, name='project_detail_page'),
@@ -17,11 +19,3 @@ urlpatterns = [
     path('blog/<int:id>/', blog_page, name='blog_detail_page'),
     path('download-resume/', download_resume, name='download_resume')
 ]
-
-from django.conf.urls import handler404
-from django.shortcuts import render
-
-def custom_404(request, exception=None):
-    return render(request, '404.html', status=404)
-
-handler404 = 'main.urls.custom_404'

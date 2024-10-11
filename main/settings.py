@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'markdownx',
     'app'
 ]
 
@@ -102,6 +103,11 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+from main import config
+
+TELEGRAM_BOT_TOKEN=config.TELEGRAM_BOT_TOKEN
+TELEGRAM_CHAT_ID=config.TELEGRAM_CHAT_ID
 
 
 # Internationalization

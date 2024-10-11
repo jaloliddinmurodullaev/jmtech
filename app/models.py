@@ -1,4 +1,5 @@
 from django.db import models
+from markdownx.models import MarkdownxField
 
 
 class Project(models.Model):
@@ -14,8 +15,8 @@ class Project(models.Model):
 
 class Blog(models.Model):
     title = models.CharField(max_length=300)
-    desctiption = models.TextField()
-    content = models.TextField()
+    description = models.TextField()
+    content = MarkdownxField()
     created_at = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(default=False)
     likes = models.BigIntegerField(default=0, null=True)
@@ -42,6 +43,9 @@ class Contact(models.Model):
     name = models.CharField(max_length=300)
     email = models.CharField(max_length=300)
     message = models.TextField()
+
+    def __str__(self):
+        return self.name
 
 # class Experience(models.Model):
 #     company = models.CharField(max_length=100)

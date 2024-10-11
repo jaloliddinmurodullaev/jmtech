@@ -1,8 +1,11 @@
+import requests
+import markdown
+
 from django.shortcuts import render
 from django.template.loader import render_to_string
 from django.contrib import messages
 from django.http import HttpResponse
-
+from django.conf import settings
 
 from weasyprint import HTML
 
@@ -12,6 +15,7 @@ from .models import Contact
 from .models import Blog
 
 from .forms import ContactForm
+from .forms import BlogForm
 
 
 def about_page(request):
@@ -56,6 +60,15 @@ def contact_page(request):
             contact_obj = Contact.objects.create(name=name, email=email, message=message)
             contact_obj.save()
 
+            telegram_message = f"New Message from jaloliddin.com:\n\nName: {name}\nEmail: {email}\n\nMessage: {message}"
+
+            BOT_TOKEN = settings.TELEGRAM_BOT_TOKEN
+            CHAT_ID=settings.TELEGRAM_CHAT_ID
+
+            telegram_url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
+
+            requests.post(telegram_url, data={'chat_id': CHAT_ID, 'text': telegram_message})
+
             messages.success(request, 'Your message has been sent successfully!')
 
             return render(request, "contact_success.html", {})
@@ -64,13 +77,29 @@ def contact_page(request):
     
     return render(request, "contact.html", {'form': form})
 
+def post_blog(request):
+    if request.method == 'POST':
+        print("NIMA 1")
+        form = BlogForm(request.POST)
+        print(form)
+        if form.is_valid():
+            form.save()
+            print("AAAAAAAAA")
+            return redirect('blogs_page')  # Redirect to blog list page
+    else:
+        print("NIMA")
+        form = BlogForm()
+    return render(request, 'post_blog.html', {'form': form})
+
 def blog_page(request, id=None):
     if id is None:
         blogs = Blog.objects.filter(is_active=True).order_by('-created_at')
         return render(request, "blog.html", {'blogs': blogs})
     else:
         try:
+            md = markdown.Markdown(extensions=["fenced_code"])
             blog = Blog.objects.get(id=id)
+            blog.content = md.convert(blog.content)
             return render(request, "blog_detail.html", {'blog': blog})
         except Exception as exc:
             print(str(exc))
