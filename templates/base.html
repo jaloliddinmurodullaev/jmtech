@@ -11,37 +11,57 @@
           .no-wrap {
               white-space: nowrap;
           }
+          .navbar-nav .nav-link {
+              padding: 1rem 1rem;  /* Adjust the padding */
+              font-size: 1.2rem;         /* Adjust font size if needed */
+          }
+          .logo {
+            color: #162232;
+            font-size: 25px;
+            font-weight: 700;
+            letter-spacing: 0;
+          }
         </style>
-    </head>
-    <body class="container">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-        <nav class="rounded navbar navbar-expand-lg navbar-light bg-light p-3 mt-2">
-            <a class="navbar-brand ms-1" href="{% url 'home' %}">JMTECH</a>
+    </head>
+    <body class="container d-flex flex-column min-vh-100">
+
+        <nav class="rounded navbar navbar-expand-lg navbar-light mt-2">
+            <a class="navbar-brand ms-1 logo" href="{% url 'home' %}"><strong>Jaloliddin's Blog</strong></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
               <ul class="navbar-nav ms-auto">
                 <li class="nav-item"></li>
-                  <a class="nav-link" href="{% url 'resume_page' %}">About</a>
+                  <a class="nav-link" href="{% url 'blog_page' %}">Blog</a>
                 </li>
+
                 <li class="nav-item">
                   <a class="nav-link" href="{% url 'projects_page' %}">Projects<span class="sr-only"></span></a> 
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{% url 'blog_page' %}">Blog</a>
+    
+                <li class="nav-item"></li>
+                  <a class="nav-link" href="{% url 'resume_page' %}">Resume</a>
                 </li>
-                <!-- <li class="nav-item">
-                  <a class="nav-link" href="">Resume</a>
-                </li> -->
+                
                  <li class="nav-item">
                   <a class="nav-link" href="{% url 'contact_page' %}">Contact</a>
                 </li> 
               </ul>
             </div>
         </nav>
+        <hr>
 
-        {% block page_content %}{% endblock page_content %}
+      <div class="container">
+          {% block page_content %}
+          <!-- Content from child templates will be inserted here -->
+          {% endblock %}
+      </div>
 
+      <footer class="text-center mt-auto py-3">
+            <p class="mb-0">&copy; {{ 2024 }} jaloliddin.com</p>
+     </footer>
     </body>
 </html>
