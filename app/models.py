@@ -9,6 +9,9 @@ class Project(models.Model):
     is_active = models.BooleanField(default=False)
     views = models.BigIntegerField(default=0, null=True)
 
+    def __str__(self):
+        return self.title
+
 class Blog(models.Model):
     title = models.CharField(max_length=300)
     desctiption = models.TextField()
@@ -17,6 +20,9 @@ class Blog(models.Model):
     is_active = models.BooleanField(default=False)
     likes = models.BigIntegerField(default=0, null=True)
     views = models.BigIntegerField(default=0, null=True)
+
+    def __str__(self):
+        return self.title
 
 class Main(models.Model):
     image = models.URLField()

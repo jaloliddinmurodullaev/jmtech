@@ -11,6 +11,7 @@ urlpatterns = [
     path('', about_page, name='home'),
     path('resume/', resume_page, name='resume_page'),
     path('projects/', projects_page, name='projects_page'),
+    # path('projects/<int:id>', projects_page, name='project_detail_page'),
     path('contact/', contact_page, name='contact_page'),
     path('blog/', blog_page, name='blog_page'),
     path('blog/<int:id>/', blog_page, name='blog_detail_page'),

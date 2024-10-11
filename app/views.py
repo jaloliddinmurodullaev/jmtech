@@ -15,23 +15,23 @@ from .forms import ContactForm
 
 
 def about_page(request):
-    # print("SHOTTA")
     views = Main.objects.get_or_create(id=1)
     views[0].views += 1
     views[0].save()
     return render(request, "about.html", {})
 
-def projects_page(request):
-    projects = Project.objects.all()
-
-    for proj in projects:
-        proj.views += 1
-        proj.save()
-        
-    context = {
-        "projects": projects
-    }
-    return render(request, "projects.html", context)
+def projects_page(request, id=None):
+    if id is None:
+        projects = Project.objects.all()            
+        return render(request, "projects.html", {"projects": projects})
+    else:
+        try:
+            project = Project.objects.get(id=id)
+            project.views += 1
+            project.save()
+            return render(request, "project_detail.html", {"project": project})
+        except Exception as e:
+            return render(request, '404.html')
 
 def resume_page(request):
     return render(request, "resume.html", {})

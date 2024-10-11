@@ -1,31 +1,30 @@
 {% extends "base.html" %}
 
 {% block page_content %}
-<br>
-<br>
-<h1>Projects</h1>
-<br>
-<br>
-<div class="row">
-{% for project in projects %}
-    <div>
-        <div class="card mb-3">
-            <div class="card-body">
-                {% if project.link %}
-                    <h5 class="card-title">{{ project.title }} | <a href="{{ project.link }}"> {{ project.title }}</a></h5>
-                    {% comment %} <a href="{{ project.link }}"> {{ project.title }}</a> {% endcomment %}
-                {% else %}
-                    <h5 class="card-title">{{ project.title }}</h5>
-                {% endif %}
-                <p class="card-text">Description: {{ project.description }}</p>
-                <p class="card-text">Technologies: {{ project.technology }}</p>
-                {% comment %} <a href="{% url 'project_detail' project.pk %}"
-                   class="btn btn-primary">
-                    Read More
-                </a> {% endcomment %}
-            </div>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <h1 class="text-center">Personal Projects</h1>
+            <hr class="mb-3 mt-5">
+            {% for project in projects %}
+                <div class="p-3">
+                    {% if project.link is not None %}
+                        <a href="{{ project.link }}" class="list-group-item list-group-item-action">
+                            <h5 class="card-title">{{ project.title }}</h5>
+                            <br>
+                            <p>{{ project.description }}</p>
+                        </a>
+                    {% else %}
+                        <a href="#" class="list-group-item list-group-item-action">
+                            <h5 class="card-title">{{ project.title }}</h5>
+                            <br>
+                            <p>{{ project.description }}</p>
+                        </a>
+                    {% endif %}
+                </div>
+                <hr class="mb-2 mt-1">
+            {% endfor %}
         </div>
     </div>
-    {% endfor %}
 </div>
 {% endblock %}
