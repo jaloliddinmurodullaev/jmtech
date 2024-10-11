@@ -2,8 +2,15 @@
 
 {% block page_content %}
 <div class="container mt-5">
-    <div class="alert alert-success" role="alert">
-        Thank you! Your message has been successfully sent.
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="alert alert-success text-center" role="alert">
+                Thank you! Your message has been successfully sent.
+            </div>
+            <div class="d-flex justify-content-center align-items-center mb-4">
+                <a href="{% url 'home' %}" class="btn btn-secondary">&larr; Back Home</a>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}

@@ -4,15 +4,23 @@
 {% block title %}Blog List{% endblock %}
 
 {% block page_content %}
-    <h1>All Blogs</h1>
-    
-    <div class="list-group">
-        {% for blog in blogs %}
-            <a href="{% url 'blog_detail_page' blog.id %}" class="list-group-item list-group-item-action">
-                <h4 class="mb-1">{{ blog.title }}</h4>
-                <p class="mb-1">{{ blog.desctiption|truncatewords:20 }}</p>
-                <small class="text-muted">Published on {{ blog.created_at|date:"F j, Y" }}</small>
-            </a>
-        {% endfor %}
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <h1 class="text-center">Articles</h1>
+                <hr class="mb-4 mt-5">
+                <div>
+                    {% for blog in blogs %}
+                        <a href="{% url 'blog_detail_page' blog.id %}" class="list-group-item list-group-item-action">
+                            <h4 class="mb-1">{{ blog.title }}</h4>
+                            <small class="text-muted">{{ blog.created_at|date:"F j, Y" }}</small>
+                            <p class="mb-1">{{ blog.desctiption|truncatewords:20 }}</p>
+                        </a>
+                        <hr class="mb-4 mt-4">
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
     </div>
+    
 {% endblock %}
