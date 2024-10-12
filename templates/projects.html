@@ -6,24 +6,32 @@
         <div class="col-md-8 offset-md-2">
             <h1 class="text-center">Personal Projects</h1>
             <hr class="mb-3 mt-5">
-            {% for project in projects %}
-                <div class="p-3">
-                    {% if project.link is not None %}
-                        <a href="{{ project.link }}" class="list-group-item list-group-item-action">
-                            <h5 class="card-title">{{ project.title }}</h5>
-                            <br>
-                            <p>{{ project.description }}</p>
-                        </a>
-                    {% else %}
-                        <a href="#" class="list-group-item list-group-item-action">
-                            <h5 class="card-title">{{ project.title }}</h5>
-                            <br>
-                            <p>{{ project.description }}</p>
-                        </a>
+            {% if projects|length > 0 %}
+                {% for project in projects %}
+                    {% if project.is_active %}
+                    <div class="p-3">
+                        {% if project.link is not None %}
+                            <a href="{{ project.link }}" target="_blank" class="list-group-item list-group-item-action">
+                                <h5 class="card-title">{{ project.title }}</h5>
+                                <br>
+                                <p>{{ project.description }}</p>
+                            </a>
+                        {% else %}
+                            <a href="#" class="list-group-item list-group-item-action">
+                                <h5 class="card-title">{{ project.title }}</h5>
+                                <br>
+                                <p>{{ project.description }}</p>
+                            </a>
+                        {% endif %}
+                    </div>
+                    <hr class="mb-2 mt-1">
                     {% endif %}
+                {% endfor %}
+            {% else %}
+                <div class="text-center p-3">
+                    <h4>No projects available yet</h4>
                 </div>
-                <hr class="mb-2 mt-1">
-            {% endfor %}
+            {% endif %}
         </div>
     </div>
 </div>

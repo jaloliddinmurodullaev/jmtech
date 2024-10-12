@@ -26,7 +26,7 @@ def about_page(request):
 
 def projects_page(request, id=None):
     if id is None:
-        projects = Project.objects.all()            
+        projects = Project.objects.filter(is_active=True)  
         return render(request, "projects.html", {"projects": projects})
     else:
         try:
@@ -79,22 +79,21 @@ def contact_page(request):
 
 def post_blog(request):
     if request.method == 'POST':
-        print("NIMA 1")
         form = BlogForm(request.POST)
-        print(form)
         if form.is_valid():
             form.save()
-            print("AAAAAAAAA")
-            return redirect('blogs_page')  # Redirect to blog list page
+            return redirect('blogs_page')
     else:
-        print("NIMA")
         form = BlogForm()
     return render(request, 'post_blog.html', {'form': form})
 
 def blog_page(request, id=None):
     if id is None:
-        blogs = Blog.objects.filter(is_active=True).order_by('-created_at')
-        return render(request, "blog.html", {'blogs': blogs})
+        try:
+            blogs = Blog.objects.filter(is_active=True).order_by('-created_at')
+            return render(request, "blog.html", {'blogs': blogs})
+        except Exception as e:
+            print(str(e))
     else:
         try:
             md = markdown.Markdown(extensions=["fenced_code"])

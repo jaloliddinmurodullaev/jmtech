@@ -10,7 +10,9 @@
                 <h1 class="text-center">Articles</h1>
                 <hr class="mb-3 mt-5">
                 <div>
+                    {% if blogs|length > 0 %}
                     {% for blog in blogs %}
+                        {% if blog.is_active %}
                         <div class="p-3">
                             <a href="{% url 'blog_detail_page' blog.id %}" class="list-group-item list-group-item-action">
                                 <h4 class="mb-1">{{ blog.title }}</h4>
@@ -19,7 +21,13 @@
                             </a>
                         </div>
                         <hr class="mb-2 mt-1">
+                        {% endif %}
                     {% endfor %}
+                    {% else %}
+                        <div class="text-center p-3">
+                            <h4>No blogs available yet</h4>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
