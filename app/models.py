@@ -16,7 +16,7 @@ class Project(models.Model):
 class Blog(models.Model):
     title = models.CharField(max_length=300)
     description = models.TextField()
-    content = MarkdownxField()
+    content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(default=False)
     likes = models.BigIntegerField(default=0, null=True)
