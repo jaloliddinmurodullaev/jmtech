@@ -7,7 +7,7 @@ from django.contrib import messages
 from django.http import HttpResponse
 from django.conf import settings
 
-from weasyprint import HTML
+# from weasyprint import HTML
 
 from .models import Project
 from .models import Main
@@ -41,12 +41,15 @@ def resume_page(request):
     return render(request, "resume.html", {})
 
 def download_resume(request):
-    html_string = render_to_string('resume_pdf.html')
-    html = HTML(string=html_string)
-    pdf = html.write_pdf()
+    response = {
+        "status": 'OK'
+    }
+    # html_string = render_to_string('resume_pdf.html')
+    # html = HTML(string=html_string)
+    # pdf = html.write_pdf()
 
-    response = HttpResponse(pdf, content_type='application/pdf')
-    response['Content-Disposition'] = 'attachment; filename="jaloliddinmurodullaev.pdf"'  # Set your desired filename
+    # response = HttpResponse(pdf, content_type='application/pdf')
+    # response['Content-Disposition'] = 'attachment; filename="jaloliddinmurodullaev.pdf"'  # Set your desired filename
     return response
 
 def contact_page(request):

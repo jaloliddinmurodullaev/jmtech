@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    command: gunicorn main.wsgi:application --bind 0.0.0.0:8000 --workers 3
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./db.sqlite3:/app/db.sqlite3  # Persist SQLite database
+      - ./static:/app/static          # Serve static files
+    environment:
+      DJANGO_SETTINGS_MODULE: "main.settings"
+      PYTHONUNBUFFERED: 1
+    restart: always
