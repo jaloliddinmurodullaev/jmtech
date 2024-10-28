@@ -1,7 +1,7 @@
 import requests
 import markdown
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.template.loader import render_to_string
 from django.contrib import messages
 from django.http import HttpResponse
