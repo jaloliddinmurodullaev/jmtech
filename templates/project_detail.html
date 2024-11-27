@@ -1,6 +1,8 @@
 <!-- blog_detail.html -->
 {% extends 'base.html' %}
 
+{% block title %}{{project.title}} | Jaloliddin's blog{% endblock %}
+
 {% block page_content %}
     <a href="{% url 'projects_page' %}" class="btn btn-outline-secondary">
         <i class="fas fa-arrow-left long-arrow"></i>
@@ -13,7 +15,7 @@
     <div class="container md-5">
         <div class="row">
             <div class="col-md-8 offset-md-2">
-                <h1 class="mb-3">{{ project.title }}</h1>
+                <h2 class="mb-3">{{ project.title }}</h2>
             </div>
         </div> 
     </div>
