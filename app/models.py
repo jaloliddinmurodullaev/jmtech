@@ -1,5 +1,6 @@
+from uuid import uuid4
 from django.db import models
-
+from django.utils.text import slugify
 
 class Project(models.Model):
     title = models.CharField(max_length=300)
@@ -8,9 +9,15 @@ class Project(models.Model):
     link = models.URLField(null=True, blank=True)
     is_active = models.BooleanField(default=False)
     views = models.BigIntegerField(default=0, null=True)
+    slug = models.SlugField(max_length=255, blank=True)
 
     def __str__(self):
         return self.title
+    
+    def save(self):
+        if not self.slug:
+            self.slug = slugify(self.title)
+        super().save()
 
 class Blog(models.Model):
     title = models.CharField(max_length=300)
@@ -20,9 +27,15 @@ class Blog(models.Model):
     is_active = models.BooleanField(default=False)
     likes = models.BigIntegerField(default=0, null=True)
     views = models.BigIntegerField(default=0, null=True)
+    slug = models.SlugField(max_length=255, blank=True)
 
     def __str__(self):
         return self.title
+    
+    def save(self):
+        if not self.slug:
+            self.slug = slugify(self.title)
+        super().save()
 
 class Main(models.Model):
     image = models.URLField()

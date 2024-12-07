@@ -14,7 +14,7 @@
                     {% for blog in blogs %}
                         {% if blog.is_active %}
                         <div class="p-3">
-                            <a href="{% url 'blog_detail_page' blog.id %}" class="list-group-item list-group-item-action">
+                            <a href="{% url 'blog_detail_page' blog.slug %}" class="list-group-item list-group-item-action">
                                 <h5 class="mb-1">{{ blog.title }}</h5>
                                 <small class="text-muted">{{ blog.created_at|date:"F j, Y" }}</small>
                                 <p class="mb-1 mt-2">{{ blog.description }}</p>

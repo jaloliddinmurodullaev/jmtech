@@ -90,17 +90,18 @@ def post_blog(request):
         form = BlogForm()
     return render(request, 'post_blog.html', {'form': form})
 
-def blog_page(request, id=None):
-    if id is None:
+def blog_page(request, slug=None):
+    if slug is None:
         try:
             blogs = Blog.objects.filter(is_active=True).order_by('-created_at')
+            print(blogs)
             return render(request, "blog.html", {'blogs': blogs})
         except Exception as e:
             print(str(e))
     else:
         try:
             md = markdown.Markdown(extensions=["fenced_code"])
-            blog = Blog.objects.get(id=id)
+            blog = Blog.objects.get(slug=slug)
             blog.content = md.convert(blog.content)
             return render(request, "blog_detail.html", {'blog': blog})
         except Exception as exc:

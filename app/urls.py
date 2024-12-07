@@ -16,6 +16,6 @@ urlpatterns = [
     # path('projects/<int:id>', projects_page, name='project_detail_page'),
     path('contact/', contact_page, name='contact_page'),
     path('blog/', blog_page, name='blog_page'),
-    path('blog/<int:id>/', blog_page, name='blog_detail_page'),
+    path('blog/<slug:slug>/', blog_page, name='blog_detail_page'),
     path('download-resume/', download_resume, name='download_resume')
 ]

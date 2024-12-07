@@ -12,7 +12,13 @@
                 {% for project in projects %}
                     {% if project.is_active %}
                     <div class="p-3">
-                        {% if project.link is not None %}
+                        {% if project.link == "http://jaloliddin.com" %}
+                        <a href="{% url 'home' %}" class="list-group-item list-group-item-action">
+                            <h5 class="card-title">{{ project.title }}</h5>
+                            <br>
+                            <p>{{ project.description }}</p>
+                        </a>
+                        {% elif project.link is not None %}
                             <a href="{{ project.link }}" target="_blank" class="list-group-item list-group-item-action">
                                 <h5 class="card-title">{{ project.title }}</h5>
                                 <br>
