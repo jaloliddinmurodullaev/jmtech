@@ -94,7 +94,6 @@ def blog_page(request, slug=None):
     if slug is None:
         try:
             blogs = Blog.objects.filter(is_active=True).order_by('-created_at')
-            print(blogs)
             return render(request, "blog.html", {'blogs': blogs})
         except Exception as e:
             print(str(e))
